@@ -44,7 +44,7 @@ class JsonFetcherServiceE2ETest {
     }
 
     @Test
-    @DisplayName("post are saved correctly and can be parsed")
+    @DisplayName("is saving posts correctly and they can be parsed afterwards")
     void postsCanBeParsed() throws IOException {
         //Given
         String url = "https://jsonplaceholder.typicode.com/posts";
