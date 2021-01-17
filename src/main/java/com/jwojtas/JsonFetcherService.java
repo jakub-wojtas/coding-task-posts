@@ -9,8 +9,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.Scanner;
+
+import static java.nio.file.Files.createDirectories;
 
 public class JsonFetcherService {
     public void saveApiResponseTo(String address, String outputPath, String namingProperty) {
@@ -54,6 +57,8 @@ public class JsonFetcherService {
     }
 
     private void writeObjectsTo(JSONArray array, String outputPath, String namingProperty) throws IOException {
+        createDirectories(Paths.get(outputPath));
+
         for (Object o : array) {
             JSONObject object = (JSONObject) o;
 
