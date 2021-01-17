@@ -1,10 +1,14 @@
 package com.jwojtas;
 
-import static com.jwojtas.JsonFetcherService.saveApiResponseToDisk;
-
 public class Main {
 
+    private static final String ADDRESS = "https://jsonplaceholder.typicode.com/posts";
+    private static final String OUTPUT_PATH = "output-files";
+    private static final String NAMING_PROPERTY = "id";
+
     public static void main(String[] args) {
-        saveApiResponseToDisk("https://jsonplaceholder.typicode.com/posts", "output-files", "id");
+        JsonFetcherService jsonFetcherService = new JsonFetcherService();
+
+        jsonFetcherService.saveApiResponseTo(ADDRESS, OUTPUT_PATH, NAMING_PROPERTY);
     }
 }

@@ -2,6 +2,7 @@ package com.jwojtas;
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -17,8 +18,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DisplayName("JsonFetcherService")
 class JsonFetcherServiceE2ETest {
 
+    private JsonFetcherService jsonFetcherService;
+
     @TempDir
     Path temporaryFolder;
+
+    @BeforeEach
+    private void init() {
+        jsonFetcherService = new JsonFetcherService();
+    }
 
     @Test
     @DisplayName("is saving correct amount of posts in temporary output folder")
@@ -29,7 +37,7 @@ class JsonFetcherServiceE2ETest {
         String namingProperty = "id";
 
         //When
-        JsonFetcherService.saveApiResponseToDisk(url, outputPath, namingProperty);
+        jsonFetcherService.saveApiResponseTo(url, outputPath, namingProperty);
 
         //Then
         assertEquals(100L, Files.list(temporaryFolder).count());
@@ -45,7 +53,7 @@ class JsonFetcherServiceE2ETest {
         JSONParser jsonParser = new JSONParser();
 
         //When
-        JsonFetcherService.saveApiResponseToDisk(url, outputPath, namingProperty);
+        jsonFetcherService.saveApiResponseTo(url, outputPath, namingProperty);
 
         ArrayList<Object> resultList = new ArrayList<>();
 
